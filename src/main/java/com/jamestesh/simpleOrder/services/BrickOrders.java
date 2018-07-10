@@ -23,6 +23,7 @@ public class BrickOrders implements OrdersInterface{
 		Orders newOrder = new Orders();
 		newOrder.setType(orderType);
 		newOrder.setQuantity(quantity);
+		newOrder.setState("New Order");
 		
 		// TODO Auto-generated method stub
 		return ordersRepo.save(newOrder);
@@ -65,6 +66,24 @@ public class BrickOrders implements OrdersInterface{
 		
 		// TODO Auto-generated method stub
 		return order;
+	}
+
+	@Override
+	public Object markAsDispatched(long orderReference) {
+		
+		try {
+		
+			Orders order = ordersRepo.findById(orderReference).get();
+			order.setState("Dispatched");
+			ordersRepo.save(order);
+			
+			return order;
+		
+		}
+		catch(Exception e) {
+			return e;
+		}
+		
 	}
 
 }

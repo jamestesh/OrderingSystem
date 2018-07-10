@@ -13,6 +13,7 @@ public class Orders {
 	private long id;
 	private String type;
 	private int quantity;
+	private String state;
 	
 	public long getId() {
 		return id;
@@ -31,6 +32,12 @@ public class Orders {
 	}
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 	
 }

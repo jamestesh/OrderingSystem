@@ -14,4 +14,6 @@ public interface OrdersInterface {
 	
 	public Orders updateOrderQuantity(long orderReference, int quantity);
 	
+	public Object markAsDispatched(long orderReference);
+	
 }

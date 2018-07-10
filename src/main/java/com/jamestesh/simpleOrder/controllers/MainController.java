@@ -3,7 +3,11 @@ package com.jamestesh.simpleOrder.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +50,21 @@ public class MainController {
 	public Orders updateOrder(@PathVariable long orderReference, @PathVariable int quantity) {
 		
 		return brickOrders.updateOrderQuantity(orderReference, quantity);
+		
+	}
+	
+	@GetMapping("/orders/update/markDispatched/{orderReference}")
+	public Object markDispatched(@PathVariable long orderReference, HttpServletResponse res) {
+		
+		Object object = brickOrders.markAsDispatched(orderReference);
+		
+		if(object instanceof Orders) {	
+			return object;
+		}
+		else {
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
 		
 	}
 	
