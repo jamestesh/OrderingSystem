@@ -1,5 +1,8 @@
 package com.jamestesh.simpleOrder.services;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,33 @@ public class BrickOrders implements OrdersInterface{
 		// TODO Auto-generated method stub
 		return ordersRepo.save(newOrder);
 		
+	}
+
+	@Override
+	public Orders retrieveOrder(long orderReference) {
+		
+		try {	
+			Orders order = ordersRepo.findById(orderReference).get();
+			
+			if(order != null) {
+				return order;
+			}
+			else {
+				return null;
+			}
+		}
+		catch(Exception e) {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public Iterable<Orders> getAllOrders() {
+	
+		Iterable<Orders> allOrders = ordersRepo.findAll();
+		
+		return allOrders;
 	}
 
 }

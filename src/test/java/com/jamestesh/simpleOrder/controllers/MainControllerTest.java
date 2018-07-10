@@ -30,4 +30,20 @@ public class MainControllerTest {
 		
 	}
 
+	@Test
+	public void test_retrieve_single_order() throws Exception{
+		
+		String body = this.restTemplate.getForObject("/orders/get/1", String.class);
+		assertThat(body).contains("Bricks");
+		
+	}
+	
+	@Test
+	public void test_retrieve_single_order_invalidReference() throws Exception{
+		
+		String body = this.restTemplate.getForObject("/orders/get/60000", String.class);
+		assertThat(body).isEqualTo(null);
+		
+	}
+	
 }

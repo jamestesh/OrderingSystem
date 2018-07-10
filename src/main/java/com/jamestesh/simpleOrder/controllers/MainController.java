@@ -28,4 +28,13 @@ public class MainController {
 		return returnMap;
 	}
 	
+	@GetMapping("/orders/get/{orderReference}")
+	public Orders retrieveSingleOrder(@PathVariable long orderReference) {
+		
+		return brickOrders.retrieveOrder(orderReference);
+		
+	}
+	
+	
+	
 }
