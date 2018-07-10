@@ -2,6 +2,8 @@ package com.jamestesh.simpleOrder.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
+import com.jamestesh.simpleOrder.models.Orders;
 import com.jamestesh.simpleOrder.repositories.OrdersRepository;
 
 @RunWith(SpringRunner.class)
@@ -28,7 +31,10 @@ import com.jamestesh.simpleOrder.repositories.OrdersRepository;
 public class MainControllerTest {
 	
 	@Autowired
-	private TestRestTemplate restTemplate;	
+	private TestRestTemplate restTemplate;
+	
+	@Autowired
+	private OrdersRepository orderRepo;
 	
 	@Autowired
 	private OrdersRepository ordersRepo;
@@ -68,8 +74,29 @@ public class MainControllerTest {
 	@Test
 	public void test_update_order() throws Exception{
 		
-		String body = this.restTemplate.getForObject("/orders/update/1/55", String.class);
-		assertThat(body).contains("55");
+		Iterable<Orders> listOfAllOrders = orderRepo.findAll();
+		
+		for(Orders order : listOfAllOrders) {
+			
+			if(order.getState().equals("Dispatched")) {
+				
+				HttpHeaders headers = new HttpHeaders();
+		        headers.setContentType(MediaType.TEXT_HTML);
+				HttpEntity<?> entity = new HttpEntity<>(headers);
+				
+				ResponseEntity<String> response = restTemplate.exchange("/orders/update/" + order.getId() + "/55" ,HttpMethod.GET, entity, String.class);
+				
+				assertThat(response.getStatusCode().toString()).isEqualTo("400");
+				
+			}
+			else {
+				String body = this.restTemplate.getForObject("/orders/update/" + order.getId() + "/55", String.class);
+				assertThat(body).contains("55");
+			}
+			
+		}
+		
+		
 		
 	}
 	

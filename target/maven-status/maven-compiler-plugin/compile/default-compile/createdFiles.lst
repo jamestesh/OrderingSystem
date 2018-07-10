@@ -1,2 +1,6 @@
-com/jamestesh/simpleOrder/controllers/MainController.class
+com/jamestesh/simpleOrder/models/Orders.class
 com/jamestesh/simpleOrder/Application.class
+com/jamestesh/simpleOrder/services/BrickOrders.class
+com/jamestesh/simpleOrder/services/interfaces/OrdersInterface.class
+com/jamestesh/simpleOrder/controllers/MainController.class
+com/jamestesh/simpleOrder/repositories/OrdersRepository.class

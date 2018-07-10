@@ -1,2 +1,6 @@
+/Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/repositories/OrdersRepository.java
+/Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/models/Orders.java
 /Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/controllers/MainController.java
 /Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/Application.java
+/Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/services/interfaces/OrdersInterface.java
+/Users/james/eclipse-workspace/simpleOrdering/src/main/java/com/jamestesh/simpleOrder/services/BrickOrders.java

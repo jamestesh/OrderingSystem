@@ -62,14 +62,19 @@ public class BrickOrders implements OrdersInterface{
 				
 		Orders order = ordersRepo.findById(orderReference).get();
 		order.setQuantity(quantity);
-		ordersRepo.save(order);
+		if(!order.getState().equals("Dispatched")) {
+			ordersRepo.save(order);
+		}
+		else {
+			return null;
+		}
 		
 		// TODO Auto-generated method stub
 		return order;
 	}
 
 	@Override
-	public Object markAsDispatched(long orderReference) {
+	public Orders markAsDispatched(long orderReference) {
 		
 		try {
 		
@@ -81,7 +86,7 @@ public class BrickOrders implements OrdersInterface{
 		
 		}
 		catch(Exception e) {
-			return e;
+			return null;
 		}
 		
 	}

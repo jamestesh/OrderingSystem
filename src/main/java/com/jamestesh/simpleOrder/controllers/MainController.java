@@ -47,19 +47,28 @@ public class MainController {
 	}
 	
 	@GetMapping("/orders/update/{orderReference}/{quantity}")
-	public Orders updateOrder(@PathVariable long orderReference, @PathVariable int quantity) {
+	public Orders updateOrder(@PathVariable long orderReference, @PathVariable int quantity,
+			HttpServletResponse res) {
 		
-		return brickOrders.updateOrderQuantity(orderReference, quantity);
+		Orders order = brickOrders.updateOrderQuantity(orderReference, quantity);
+		
+		if(order != null) {
+			return order;
+		}
+		else{
+			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			return null;
+		}
 		
 	}
 	
 	@GetMapping("/orders/update/markDispatched/{orderReference}")
-	public Object markDispatched(@PathVariable long orderReference, HttpServletResponse res) {
+	public Orders markDispatched(@PathVariable long orderReference, HttpServletResponse res) {
 		
-		Object object = brickOrders.markAsDispatched(orderReference);
+		Orders order = brickOrders.markAsDispatched(orderReference);
 		
-		if(object instanceof Orders) {	
-			return object;
+		if(order != null) {	
+			return order;
 		}
 		else {
 			res.setStatus(HttpServletResponse.SC_BAD_REQUEST);
