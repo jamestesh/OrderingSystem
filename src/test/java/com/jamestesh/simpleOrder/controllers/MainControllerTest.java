@@ -54,4 +54,12 @@ public class MainControllerTest {
 		
 	}
 	
+	@Test
+	public void test_update_order() throws Exception{
+		
+		String body = this.restTemplate.getForObject("/orders/update/1/55", String.class);
+		assertThat(body).contains("55");
+		
+	}
+	
 }

@@ -42,4 +42,11 @@ public class MainController {
 		
 	}
 	
+	@GetMapping("/orders/update/{orderReference}/{quantity}")
+	public Orders updateOrder(@PathVariable long orderReference, @PathVariable int quantity) {
+		
+		return brickOrders.updateOrderQuantity(orderReference, quantity);
+		
+	}
+	
 }

@@ -56,4 +56,15 @@ public class BrickOrders implements OrdersInterface{
 		return allOrders;
 	}
 
+	@Override
+	public Orders updateOrderQuantity(long orderReference, int quantity) {
+				
+		Orders order = ordersRepo.findById(orderReference).get();
+		order.setQuantity(quantity);
+		ordersRepo.save(order);
+		
+		// TODO Auto-generated method stub
+		return order;
+	}
+
 }

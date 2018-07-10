@@ -12,4 +12,6 @@ public interface OrdersInterface {
 	
 	public Iterable<Orders> getAllOrders();
 	
+	public Orders updateOrderQuantity(long orderReference, int quantity);
+	
 }
