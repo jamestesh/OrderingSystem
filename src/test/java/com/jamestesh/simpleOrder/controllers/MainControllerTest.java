@@ -46,4 +46,12 @@ public class MainControllerTest {
 		
 	}
 	
+	@Test
+	public void test_retrieve_all_orders() throws Exception{
+		
+		String body = this.restTemplate.getForObject("/orders/get/all", String.class);
+		assertThat(body).contains("Bricks");
+		
+	}
+	
 }

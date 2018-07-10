@@ -35,6 +35,11 @@ public class MainController {
 		
 	}
 	
-	
+	@GetMapping("/orders/get/all")
+	public Iterable<Orders> retrieveAllOrders() {
+		
+		return brickOrders.getAllOrders();
+		
+	}
 	
 }
